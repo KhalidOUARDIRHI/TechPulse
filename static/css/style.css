@@ -74,32 +74,86 @@ body {
 /* Tags */
 .tag-badge {
     font-size: 0.75rem;
-    padding: 5px 10px;
-    margin-right: 5px;
-    margin-bottom: 5px;
+    padding: 6px 12px;
+    margin-right: 8px;
+    margin-bottom: 8px;
     border-radius: 20px;
     background-color: #e9ecef;
     color: #495057;
     display: inline-block;
     cursor: pointer;
-    transition: background-color 0.2s;
+    transition: all 0.2s ease;
+    border: 1px solid #dee2e6;
+    font-weight: 500;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
 }
 
 .tag-badge:hover {
-    background-color: #dee2e6;
+    background-color: #d8e0f0;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .tag-badge.active {
-    background-color: #6c757d;
+    background-color: #4a88e5;
     color: white;
+    border-color: #3a78d5;
+}
+
+/* Tags dans les cartes */
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.tags-container .tag-badge {
+    font-size: 0.7rem;
+    padding: 4px 8px;
+    margin-right: 6px;
+    margin-bottom: 6px;
 }
 
 /* Filtres */
 #filterContainer {
     background-color: #f1f3f5;
-    padding: 10px 15px;
-    border-radius: 8px;
-    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#filterContainer > div:first-child {
+    font-weight: 600;
+    color: #343a40;
+    margin-bottom: 5px;
+    font-size: 0.95rem;
+}
+
+#filterContainer .filter-section {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+#sourceFilter {
+    min-width: 180px;
+    border-radius: 6px;
+    border: 1px solid #ced4da;
+    padding: 6px 10px;
+    font-size: 0.9rem;
+}
+
+#tagFilters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+    width: 100%;
 }
 
 /* Pagination */

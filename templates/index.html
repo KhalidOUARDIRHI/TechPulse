@@ -46,15 +46,23 @@
                 <h2 class="mb-3">Dernières actualités</h2>
                 
                 <!-- Filtres -->
-                <div class="d-flex flex-wrap align-items-center gap-2 mb-3" id="filterContainer">
-                    <div class="me-2">Filtrer par:</div>
-                    <select class="form-select form-select-sm me-2" style="max-width: 150px;" id="sourceFilter">
-                        <option value="">Toutes les sources</option>
-                        <!-- Sources seront ajoutées dynamiquement -->
-                    </select>
+                <div id="filterContainer">
+                    <div>Filtres de recherche</div>
+                    <div class="filter-section">
+                        <div class="d-flex align-items-center">
+                            <label for="sourceFilter" class="me-2">Source:</label>
+                            <select class="form-select form-select-sm" id="sourceFilter">
+                                <option value="">Toutes les sources</option>
+                                <!-- Sources seront ajoutées dynamiquement -->
+                            </select>
+                        </div>
+                    </div>
                     
-                    <div id="tagFilters" class="d-flex flex-wrap gap-1">
-                        <!-- Tags seront ajoutés dynamiquement -->
+                    <div>
+                        <div class="mb-2">Tags populaires:</div>
+                        <div id="tagFilters">
+                            <!-- Tags seront ajoutés dynamiquement -->
+                        </div>
                     </div>
                 </div>
                 
@@ -104,6 +112,7 @@
                                 <option value="ia">Intelligence Artificielle</option>
                                 <option value="security">Cybersécurité</option>
                                 <option value="dev">Développement</option>
+                                <option value="tech">Tech Générale</option>
                                 <option value="other">Autre</option>
                             </select>
                         </div>
