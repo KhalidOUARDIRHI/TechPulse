@@ -1,0 +1,86 @@
+[
+    {
+        "name": "AWS Blog",
+        "url": "https://aws.amazon.com/blogs/aws/feed/",
+        "icon": "aws.png",
+        "category": "cloud",
+        "active": true
+    },
+    {
+        "name": "Microsoft Azure",
+        "url": "https://www.microsoft.com/releasecommunications/api/v2/azure/rss",
+        "icon": "azure.png",
+        "category": "cloud",
+        "active": true
+    },
+    {
+        "name": "Google Cloud",
+        "url": "https://cloudblog.withgoogle.com/rss/",
+        "icon": "gcp.png",
+        "category": "cloud",
+        "active": true
+    },
+    {
+        "name": "Kubernetes Blog",
+        "url": "https://kubernetes.io/feed.xml",
+        "icon": "kubernetes.png",
+        "category": "cloud",
+        "active": true
+    },
+    {
+        "name": "OpenAI News",
+        "url": "https://openai.com/news/rss.xml",
+        "icon": "openai.png",
+        "category": "ia",
+        "active": true
+    },
+    {
+        "name": "Towards Data Science",
+        "url": "https://towardsdatascience.com/feed",
+        "icon": "tds.png",
+        "category": "ia",
+        "active": true
+    },
+    {
+        "name": "KrebsOnSecurity",
+        "url": "https://krebsonsecurity.com/feed/",
+        "icon": "krebs.png",
+        "category": "security",
+        "active": true
+    },
+    {
+        "name": "The Hacker News",
+        "url": "https://feeds.feedburner.com/TheHackersNews",
+        "icon": "hackernews.png",
+        "category": "security",
+        "active": true
+    },
+    {
+        "name": "GitHub Blog",
+        "url": "https://github.blog/feed/",
+        "icon": "github.png",
+        "category": "dev",
+        "active": true
+    },
+    {
+        "name": "Stack Overflow Blog",
+        "url": "https://stackoverflow.blog/feed/",
+        "icon": "stackoverflow.png",
+        "category": "dev",
+        "active": true
+    },
+    {
+        "name": "TechCrunch",
+        "url": "https://techcrunch.com/feed/",
+        "icon": "techcrunch.png",
+        "category": "tech",
+        "active": true
+    },
+    {
+        "name": "MIT Technology Review",
+        "url": "https://www.technologyreview.com/feed/",
+        "icon": "mit.png",
+        "category": "tech",
+        "active": true
+    }
+] 

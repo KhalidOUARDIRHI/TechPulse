@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechPulse - Veille Technologique</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-rss-square me-2"></i>
+                TechPulse
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/">Actualités</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="readLaterBtn">À lire plus tard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="sourceManagementBtn">Sources</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <input class="form-control me-2" type="search" id="searchInput" placeholder="Rechercher...">
+                    <button class="btn btn-light" id="refreshBtn" title="Rafraîchir les flux">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row mb-4">
+            <div class="col-12">
+                <h2 class="mb-3">Dernières actualités</h2>
+                
+                <!-- Filtres -->
+                <div class="d-flex flex-wrap align-items-center gap-2 mb-3" id="filterContainer">
+                    <div class="me-2">Filtrer par:</div>
+                    <select class="form-select form-select-sm me-2" style="max-width: 150px;" id="sourceFilter">
+                        <option value="">Toutes les sources</option>
+                        <!-- Sources seront ajoutées dynamiquement -->
+                    </select>
+                    
+                    <div id="tagFilters" class="d-flex flex-wrap gap-1">
+                        <!-- Tags seront ajoutés dynamiquement -->
+                    </div>
+                </div>
+                
+                <!-- Container pour articles -->
+                <div class="row" id="articlesContainer">
+                    <!-- Articles seront ajoutés dynamiquement -->
+                    <div class="col-12 text-center py-5">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Chargement...</span>
+                        </div>
+                        <p class="mt-2">Chargement des articles...</p>
+                    </div>
+                </div>
+                
+                <!-- Pagination -->
+                <nav aria-label="Pagination" class="mt-4">
+                    <ul class="pagination justify-content-center" id="pagination">
+                        <!-- Éléments pagination dynamiques -->
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal d'ajout de source -->
+    <div class="modal fade" id="sourceModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Gérer les sources</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addSourceForm">
+                        <div class="mb-3">
+                            <label for="sourceName" class="form-label">Nom de la source</label>
+                            <input type="text" class="form-control" id="sourceName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="sourceUrl" class="form-label">URL du flux RSS</label>
+                            <input type="url" class="form-control" id="sourceUrl" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="sourceCategory" class="form-label">Catégorie</label>
+                            <select class="form-control" id="sourceCategory" required>
+                                <option value="cloud">Cloud</option>
+                                <option value="ia">Intelligence Artificielle</option>
+                                <option value="security">Cybersécurité</option>
+                                <option value="dev">Développement</option>
+                                <option value="other">Autre</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Ajouter</button>
+                    </form>
+                    
+                    <hr>
+                    
+                    <h6 class="mt-4 mb-3">Sources actuelles</h6>
+                    <ul class="list-group" id="sourcesList">
+                        <!-- Sources ajoutées dynamiquement -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Template pour les cartes d'articles -->
+    <template id="articleTemplate">
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100">
+                <div class="card-img-top-wrapper">
+                    <img src="" class="card-img-top" alt="Image de l'article">
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between mb-2">
+                        <span class="badge bg-primary source-badge"></span>
+                        <small class="text-muted pub-date"></small>
+                    </div>
+                    <h5 class="card-title"></h5>
+                    <p class="card-text description"></p>
+                    <div class="tags-container mb-3">
+                        <!-- Tags seront ajoutés dynamiquement -->
+                    </div>
+                </div>
+                <div class="card-footer d-flex justify-content-between">
+                    <a href="#" target="_blank" class="btn btn-sm btn-outline-primary article-link">
+                        <i class="fas fa-external-link-alt me-1"></i> Lire l'article
+                    </a>
+                    <div>
+                        <button class="btn btn-sm btn-outline-secondary read-later-btn" title="Marquer à lire plus tard">
+                            <i class="far fa-bookmark"></i>
+                        </button>
+                        <button class="btn btn-sm btn-outline-secondary mark-read-btn" title="Marquer comme lu">
+                            <i class="far fa-check-circle"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/locale/fr.js"></script>
+    <script src="/static/js/main.js"></script>
+</body>
+</html> 
