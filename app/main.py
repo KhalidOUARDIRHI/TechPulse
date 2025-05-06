@@ -22,7 +22,7 @@ logger = logging.getLogger(__name__)
 # Création de l'application FastAPI
 app = FastAPI(
     title="TechPulse",
-    description="Application de veille technologique intelligente",
+    description="Application de veille technologique intelligente pour consultants en transformation digitale. Agrège et filtre les actualités tech depuis divers flux RSS avec génération automatique de tags et interface moderne.",
     version="1.0.0",
 )
 

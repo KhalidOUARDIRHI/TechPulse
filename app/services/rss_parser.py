@@ -193,6 +193,39 @@ class RSSParser:
         
         if content_html:
             soup = BeautifulSoup(content_html, 'html.parser')
+            # Chercher d'abord les grandes images
+            for img in soup.find_all('img'):
+                src = img.get('src')
+                # Vérifier si c'est une image "substantielle" (pas une icône)
+                width = img.get('width')
+                height = img.get('height')
+                if src and ((width and int(width) > 150) or (height and int(height) > 150) or 
+                           ('width' not in img.attrs and 'height' not in img.attrs)):
+                    return src
+            
+            # Si pas de grande image trouvée, prendre la première
+            img = soup.find('img')
+            if img and img.get('src'):
+                return img['src']
+        
+        # Essayer les attributs spécifiques
+        image_url = None
+        for attr in ['image', 'thumbnail', 'jetpack_featured_media_url']:
+            if hasattr(entry, attr) and getattr(entry, attr):
+                image_url = getattr(entry, attr)
+                if isinstance(image_url, dict) and 'url' in image_url:
+                    image_url = image_url['url']
+                return image_url
+        
+        # Essayer de chercher dans les liens (parfois les images sont dans des liens)
+        if hasattr(entry, 'links'):
+            for link in entry.links:
+                if link.get('type', '').startswith('image/'):
+                    return link.get('href')
+        
+        # Essayer d'examiner un éventuel résumé
+        if hasattr(entry, 'summary') and entry.summary:
+            soup = BeautifulSoup(entry.summary, 'html.parser')
             img = soup.find('img')
             if img and img.get('src'):
                 return img['src']
